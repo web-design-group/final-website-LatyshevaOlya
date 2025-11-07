@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint Events - Портфолио</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="logo.png" alt="Blueprint Events">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="portfolio.html" class="active">Портфолио</a></li>
+                    <li><a href="#">Мероприятия</a></li>
+                    <li><a href="#">Сотрудничество</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-image">
+                <img src="1.jpg" alt="Blueprint Events - Организация мероприятий">
+                <div class="hero-overlay">
+                    <div class="hero-content">
+                        <div class="logo-large">
+                            <h1>ПОРТФОЛИО ПРОЕКТОВ</h1>
+                        </div>
+                        <button class="cta-button">Заказать мероприятие</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio">
+            <div class="filter-container">
+                <button class="filter-toggle" id="filterToggle">
+                    Фильтр
+                    <span class="filter-arrow">▼</span>
+                </button>
+                
+                <aside class="filter-sidebar" id="filterSidebar">
+                    <div class="filter-options">
+                        <div class="filter-group">
+                            <label class="filter-option">
+                                <input type="radio" name="event-type" value="all" checked>
+                                <span class="radiomark"></span>
+                                Все мероприятия
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="event-type" value="wedding">
+                                <span class="radiomark"></span>
+                                Свадьба
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="event-type" value="anniversary">
+                                <span class="radiomark"></span>
+                                Юбилей
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="event-type" value="corporate">
+                                <span class="radiomark"></span>
+                                Корпоратив
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="event-type" value="graduation">
+                                <span class="radiomark"></span>
+                                Выпускной
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Projects Grid -->
+            <article class="projects-grid">
+                <figure class="project-item" data-category="wedding">
+                    <img src="w3.jpg" alt="Проект 1">
+                    <figcaption>Свадьба Анны и Михаила</figcaption>
+                </figure>
+                <figure class="project-item" data-category="corporate">
+                    <img src="41.jpg" alt="Проект 2">
+                    <figcaption>Корпоратив IT-компании</figcaption>
+                </figure>
+                <figure class="project-item" data-category="anniversary">
+                    <img src="hb22.jpg" alt="Проект 3">
+                    <figcaption>Юбилей 50 лет</figcaption>
+                </figure>
+                <figure class="project-item" data-category="graduation">
+                    <img src="31.jpg" alt="Проект 4">
+                    <figcaption>Выпускной вечер</figcaption>
+                </figure>
+                <figure class="project-item" data-category="wedding">
+                    <img src="w2.jpg" alt="Проект 5">
+                    <figcaption>Свадьба в загородном отеле</figcaption>
+                </figure>
+                <figure class="project-item" data-category="corporate">
+                    <img src="42.jpg" alt="Проект 6">
+                    <figcaption>Новогодний корпоратив</figcaption>
+                </figure>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p class="phone">+7 (953) 245 35 35</p>
+                <p class="email">blueprintevents@gmail.com</p>
+            </div>
+            <div class="footer-section">
+                <a href="#" class="policy-link">политика обработки персональных данных</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterToggle = document.getElementById('filterToggle');
+            const filterSidebar = document.getElementById('filterSidebar');
+            const filterArrow = document.querySelector('.filter-arrow');
+            const projectItems = document.querySelectorAll('.project-item');
+            const radioInputs = document.querySelectorAll('input[name="event-type"]');
+
+            // Toggle filter sidebar
+            filterToggle.addEventListener('click', function(event) {
+                event.stopPropagation();
+                filterSidebar.classList.toggle('active');
+                filterArrow.classList.toggle('active');
+                filterToggle.classList.toggle('active');
+            });
+
+            // Close filter when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!filterToggle.contains(event.target) && !filterSidebar.contains(event.target)) {
+                    filterSidebar.classList.remove('active');
+                    filterArrow.classList.remove('active');
+                    filterToggle.classList.remove('active');
+                }
+            });
+
+            // Filter projects
+            radioInputs.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const selectedCategory = this.value;
+                    
+                    projectItems.forEach(item => {
+                        if (selectedCategory === 'all' || item.dataset.category === selectedCategory) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
