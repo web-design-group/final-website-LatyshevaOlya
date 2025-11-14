@@ -17,7 +17,7 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Главная</a></li>
                     <li><a href="portfolio.html" class="active">Портфолио</a></li>
-                    <li><a href="#">Мероприятия</a></li>
+                    <li><a href="index2.html">Мероприятия</a></li>
                     <li><a href="#">Сотрудничество</a></li>
                     <li><a href="#">Контакты</a></li>
                 </ul>
@@ -123,47 +123,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterToggle = document.getElementById('filterToggle');
-            const filterSidebar = document.getElementById('filterSidebar');
-            const filterArrow = document.querySelector('.filter-arrow');
-            const projectItems = document.querySelectorAll('.project-item');
-            const radioInputs = document.querySelectorAll('input[name="event-type"]');
-
-            // Toggle filter sidebar
-            filterToggle.addEventListener('click', function(event) {
-                event.stopPropagation();
-                filterSidebar.classList.toggle('active');
-                filterArrow.classList.toggle('active');
-                filterToggle.classList.toggle('active');
-            });
-
-            // Close filter when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!filterToggle.contains(event.target) && !filterSidebar.contains(event.target)) {
-                    filterSidebar.classList.remove('active');
-                    filterArrow.classList.remove('active');
-                    filterToggle.classList.remove('active');
-                }
-            });
-
-            // Filter projects
-            radioInputs.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const selectedCategory = this.value;
-                    
-                    projectItems.forEach(item => {
-                        if (selectedCategory === 'all' || item.dataset.category === selectedCategory) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 </body>
 </html>
